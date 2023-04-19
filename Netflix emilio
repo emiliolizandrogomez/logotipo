@@ -1,0 +1,173 @@
+paquete  com . aureliomont _ netflix_03 ;
+
+importar  Java . yo _ FileWriter ;
+importar  Java . yo _ IOExcepción ;
+importar  Java . útil _ Lista de arreglos ;
+
+
+ Director de clase  pública {
+
+	public  static  void  main ( String [] args ) {
+		
+		ArrayList < Pelicula > peliculas = new  ArrayList < Pelicula >();
+		ArrayList < Serie > serie = new  ArrayList < Serie >();
+		
+		
+		peliculas _ add ( nueva  Pelicula ( "Intensa-Mente" , "Pete Docter" ));
+		peliculas _ añadir ( nueva  Pelicula ( "El Renacido" , "Cine dramático/Suspenso" , "Alejandro González Iñárritu" , 2016 , "2h 36m" ));
+		peliculas _ add ( nueva  Pelicula ( "Los miserables" , "Cine dramatico/Cine romantico" , "Tom Hooper" , 2012 , "2h 40m" ));
+		peliculas _ add ( nueva  Pelicula ( "Arráncame la vida" , "Drama/Cine romántico" , "Roberto Sneider" , 2008 , "1h 47m" ));
+		peliculas _ agregar ( nueva  Pelicula ());
+		
+		
+		sistema _ fuera _ println ( "* Lista de todas las Películas" );
+		
+		para ( Pelicula  pelicula : peliculas ) {
+			sistema _ fuera _ println ( pelicula . toString ()+ "\n" );
+		}
+		
+		serie _ add ( nueva  Serie ( "Sherlock" , "Serie de televisión policíaca" , "Sue Vertue" , "1h 30m" , 3 ));
+		serie _ agregar ( nueva  Serie ( "Downton Abbey" , "Julian Fellowes" ));
+		serie _ agregar ( nueva  Serie ( "Merlín" , "Drama, Fantasía" , "Julian Jones" , "50m" , 5 ));
+		serie _ agregar ( nueva  serie ( "Anatomía de Grey" , "Drama médico" , "Shonda Rhimes" , "42m" , 12 ));
+		serie _ añadir ( nueva  Serie ());
+		
+		sistema _ fuera _ println ( "\n* Lista de todas las series" );
+		
+		para ( Serie  serie : serie ) {
+			sistema _ fuera _ println ( serie . toString ()+ "\n" );
+		}
+		
+		peliculas _ obtener ( 1 ). marcarVisto ( "1h 55m 15s" );
+		peliculas _ obtener ( 3 ). marcarVisto ( "0h 45m 03s" );
+		
+		serie _ obtener ( 2 ). marcarVisto ( "42m 15s" );
+		serie _ obtener ( 4 ). marcarVisto ( "47m 00s" );
+		
+		sistema _ fuera _ println ( "* Lista de las Películas que se visualizan" );
+		
+		para ( Pelicula  pelicula : peliculas ) {
+			if ( pelicula . esVisto ()) {
+				sistema _ fuera _ println ( pelicula.toString ( )) ;
+				sistema _ fuera _ println ( " ---> " + pelicula . tiempoVisto () + "\n" );
+			}
+		}
+		
+		sistema _ fuera _ println ( "\n* Lista de las Series que se visualizan" );
+		para ( Serie  serie : serie ) {
+			if ( serie . esVisto ()) {
+				sistema _ fuera _ println ( serie.toString ( )) ;
+				sistema _ fuera _ println ( "--->" + serie.tiempoVisto ( )+ "\n" ) ;
+			}
+		}
+		
+		sistema _ fuera _ println ( "\n* Serie con mas temporadas ->\n" + serieMasTemporadas ( series ));
+		sistema _ fuera _ println ( "\n* Pelicula Mas Reciente ->\n" + peliculaReciente ( peliculas ));
+		
+		sistema _ fuera _ println ( guararPeliculas ( peliculas ));
+		sistema _ fuera _ println ( guararSeries ( serie ));
+		
+
+		
+	}
+	
+	
+	public  static  String  serieMasTemporadas ( ArrayList < Serie > misSeries ){
+		int  maximo = 0 ;
+		 índice int = 0 ;
+		
+		for ( int  i = 0 ; i < misSeries . tamaño (); i ++) {
+			if ( misSeries . get ( i ). getNoTemporadas () > maximo ) {
+				maximo = misSeries . obtener ( yo ). getNoTemporadas ();
+				índice = yo ;
+			}
+		}
+		devolver  misSeries . obtener ( índice ). a la cadena ();
+	}
+	
+	public  static  String  peliculaReciente ( ArrayList < Pelicula > misPeliculas ){
+		int  maximo = 0 ;
+		 índice int = 0 ;
+		
+		for ( int  i = 0 ; i < misPeliculas . size (); i ++) {
+			if ( misPeliculas . get ( i ). getAnio () > maximo ) {
+				maximo = misPeliculas . obtener ( yo ). obtenerAnio ();
+				índice = yo ;
+			}
+		}
+		volver  misPeliculas . obtener ( índice ). a la cadena ();
+	}
+	
+	public  static  String  guararPeliculas ( ArrayList < Pelicula > misPeliculas ) {
+		FileWriter  archivo = null ;
+	 	 Elemento de cadena ;
+	 	 Mensaje de cadena = "" ;
+	 	String  ruta = "/home/aurelio/Peliculas.txt" ;
+		sistema _ fuera _ println ( "\n* Guardando coleccion de PELICULAS en disco......\n" );
+		
+		prueba {
+			archivo = new  FileWriter ( ruta );
+			elemento = "LISTADO DE PELÍCULAS \n \n" ;
+            archivo _ escribir ( elemento );
+			for ( int  i = 0 ; i < misPeliculas . size (); i ++) {
+				si ( yo > 0 ) {
+					archivo _ escribir ( System . getProperty ( "line.separator" ));
+					archivo _ escribir ( System . getProperty ( "line.separator" ));
+				}
+			elemento = mis Peliculas . obtener ( yo ). a la cadena ();
+            archivo _ escribir ( elemento );	
+			}
+		} captura ( IOException  e ) {
+			mi . imprimirStackTrace ();
+			mensaje = "ERROR al acceder a la unidad de almacenamiento :)\n" ;
+		}
+		finalmente {
+        	if ( archivo != nulo ){
+            	prueba {
+                	archivo _ cerrar ();
+                	mensaje = "\n* Se guardaron " + misPeliculas . tamaño () + " peliculas en " + ruta + "! :)\n" ;
+            	} captura ( IOException  e ) {
+                	mi . imprimirStackTrace ();
+            	}
+            	archivo = nulo ;
+        	}
+    	}
+		 mensaje de retorno ;
+	}
+	
+	public  static  String  guararSeries ( ArrayList < Serie > misSeries ) {
+		FileWriter  archivo = null ;
+	 	 Elemento de cadena ;
+	 	 Mensaje de cadena = "" ;
+	 	String  ruta = "/home/aurelio/Serie.txt" ;
+		sistema _ fuera _ println ( "\n* Guardando coleccion de SERIES en disco......\n" );
+		
+		prueba {
+			archivo = new  FileWriter ( ruta );
+			elemento = "LISTADO DE SERIES\n\n" ;
+            archivo _ escribir ( elemento );
+			for ( int  i = 0 ; i < misSeries . tamaño (); i ++) {
+				si ( yo > 0 ) {
+					archivo _ escribir ( System . getProperty ( "line.separator" ));
+					archivo _ escribir ( System . getProperty ( "line.separator" ));
+				}
+			elemento = misSeries . obtener ( yo ). a la cadena ();
+            archivo _ escribir ( elemento );	
+			}
+		} captura ( IOException  e ) {
+			mi . imprimirStackTrace ();
+			mensaje = "ERROR al acceder a la unidad de almacenamiento :)\n" ;
+		}
+		finalmente {
+        	if ( archivo != nulo ){
+            	prueba {
+                	archivo _ cerrar ();
+                	mensaje = "\n* Se guardaron " + misSeries . tamaño () + " serie en " + ruta + "! :)\n" ;
+            	} captura ( IOException  e ) {
+                	mi . imprimirStackTrace ();
+            	}
+            	archivo = nulo ;
+        	}
+    	}
+		 mensaje de retorno ;
+	}
