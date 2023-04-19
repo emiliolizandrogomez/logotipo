@@ -1,0 +1,56 @@
+Desarrolle un código de Java siguiendo los pasos a continuación:
+
+Crea una clase llamada Película con las siguientes características: • Atributos: título, género, creador, año, duración y visto.
+
+• Constructores:
+
+• Un constructor por defecto.
+
+• Un constructor con el título y creador. Los demás campos tendrán su valor predeterminado por tipo de dato. Visto tendrá false por defecto.
+
+• Un constructor con todos los atributos, excepto visto.
+
+• Métodos:
+
+• Métodos get de todos los atributos, excepto visto.
+
+• Métodos establecidos de todos los atributos, excepto visto.
+
+• Sobreescribe el método toString.
+
+Crea una clase Serie con las siguientes características:
+• Sus atributos son título, no. de temporadas, visto, genero, creador y duracion.
+
+• Por defecto, el número de temporadas es 1 y visto falso.
+
+• El resto de atributos serán valores por defecto según el tipo de atributo.
+
+• Constructores:
+
+• Un constructor por defecto.
+
+• Un constructor con el título y creador. Los demás campos tendrán su valor predeterminado por tipo de dato.
+
+• Visto tendrá false por defecto.
+
+• Un constructor con todos los atributos, excepto visto.
+
+• Métodos:
+
+• Métodos get de todos los atributos, excepto visto.
+
+• Métodos establecidos de todos los atributos, excepto visto.
+
+• Sobrescribe el método toString
+
+En principio, las clases anteriores no son padre-hija, pero sí tienen características en común. Realice el análisis correcto e implemente para tener un resultado óptimo.
+
+Crea una interfaz llamada Visualizable con los siguientes métodos:
+
+• marcarVisto() cambia el atributo de visto a verdadero.
+
+• esVisto() devuelve el estado del atributo visto.
+
+• tiempoVisto() devuelve el tiempo en minutos/segundos que se visualizó el video.
+
+Clase Ejecutable Utiliza el programa anterior para implementar la clase ArrayList en lugar de manejar el Arreglo de Objetos. Analice el programa para cachar posibles eventos inesperados que pudieran ocurrir durante el programa e implementa las Excepciones necesarias.
